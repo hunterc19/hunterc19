@@ -508,8 +508,9 @@ which is in the linalg subpackage of the scipy package.
 You want to be able to use this function as follows:
 
 my_inv([[1,2], [3,4]])
-"""
+
 
 from scipy.linalg import inv as my_inv
 
 
+"""
