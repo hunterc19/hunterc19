@@ -475,7 +475,7 @@ import numpy as np
 #import numpy as np
 
 # Import the math package
-#import math
+import math
 
 # Definition of radius
 r = 0.43
@@ -508,9 +508,8 @@ which is in the linalg subpackage of the scipy package.
 You want to be able to use this function as follows:
 
 my_inv([[1,2], [3,4]])
-
-
-#from scipy.linalg import inv as my_inv
-
-
 """
+
+from scipy.linalg import inv as my_inv
+
+
