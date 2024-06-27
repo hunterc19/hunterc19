@@ -64,7 +64,20 @@ Course covers the most important and relevant ways of doing things
 
 import pandas as pd
 ['region', 'state', 'individuals', 'family_members', 'state_pop']
+homelessness = {
+    'store': [1, 2, 1, 2, 1],
+    'type': ['A', 'B', 'A', 'B', 'A'],
+    'department': [1, 1, 2, 2, 3],
+    'date': ['2023-01-01', '2023-01-01', '2023-01-08', '2023-01-08', '2023-01-15'],
+    'weekly_sales': [20000.0, 15000.0, 25000.0, 12000.0, 30000.0],
+    'is_holiday': [False, False, True, False, True],
+    'temperature_c': [22.5, 21.0, 23.0, 19.0, 20.5],
+    'fuel_price_usd_per_l': [0.75, 0.80, 0.78, 0.82, 0.77],
+    'unemployment': [7.5, 8.0, 7.8, 8.1, 7.7]
+}
 
+# Create the DataFrame from the dictionary
+homelessness = pd.DataFrame(homelessness)
 
 # Print the head of the homelessness data
 print(homelessness.head())
