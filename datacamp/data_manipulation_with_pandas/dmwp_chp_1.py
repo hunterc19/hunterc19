@@ -63,7 +63,7 @@ Course covers the most important and relevant ways of doing things
 ##Exercise 1: 
 
 import pandas as pd
-['region', 'state', 'individuals', 'family_members', 'state_pop']
+#['region', 'state', 'individuals', 'family_members', 'state_pop']
 homelessness = {
     'store': [1, 2, 1, 2, 1],
     'type': ['A', 'B', 'A', 'B', 'A'],
