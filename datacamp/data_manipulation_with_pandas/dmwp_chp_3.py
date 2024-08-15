@@ -118,3 +118,55 @@ print(temperatures_ind.sort_index(level=["country", "city"], ascending=[True,Fal
 
 # Slicing and subsetting with .loc and .iloc
 
+breeds = ['Labrador',
+          'Poodle',
+          'Chow Chow',
+          'Schnauzer',
+          'Labrador',
+          'Chihuahua',
+          'St. Bernard']
+
+
+"""
+Slicing the above list, does not include the final value
+breeds[2:5]
+Beginning of list
+breeds[:3] #First 3 items
+Slice entire list
+    breeds[:]
+
+Sort the index before you slice
+dogs_srt = dogs.set_index(["breed", "color"]).sort_index()
+
+Slicing the outer index level
+    dogs_srt.loc["Chow Chow":"Poodle"]
+2 major differences compared to slicing lists
+    1. specify index values instead of row numbers
+    2. final value is included in slicing index
+
+Slicing the inner index levels badly
+dogs_srt.loc["Tan":"Grey"]
+This will give use a blank dataframe
+
+Slicing the innner index levels correctly
+dogs_srt.loc[
+        ("Laborador", "Brown"):("Schnauzer","Grey")]
+
+Slicing columns
+dogs_srt.loc[:, "name":"height_cm"]
+colon here is the first arguement to not filter out any rows
+
+Slice rows and columns together:
+dogs_srt.loc[
+    ("Laborador", "Brown"):("Schnauzer","Grey"),
+    "name":"height_cm"]
+
+Use case for slicing (sorting by dates)
+dogs = dogs.set_index("date_of_birth").sort_index()
+dogs.loc["2014-08-25":"2016-09-16"]
+slicing by partial dates
+dogs.loc["2014":"2016"]
+subsetting by row/column number, final values not included 
+dogs.iloc[2:5, 1:4]
+"""
+
