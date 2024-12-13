@@ -169,4 +169,60 @@ dogs.loc["2014":"2016"]
 subsetting by row/column number, final values not included 
 dogs.iloc[2:5, 1:4]
 """
+# Slicing Index Values 
+'''
+first:last syntax
+can be sliced by index values or row/column number
+index values method uses .loc[] method
+can only slice an index if the index is sorted using .sort_index()
+outer level:  first and last can be strings
+inner level: first and last should be tuples
+if pass a single slice to .loc[], it will slice the rows
 
+'''
+# Sort the index of temperatures_ind
+temperatures_srt = temperatures_ind.sort_index()
+
+# Subset rows from Pakistan to Russia
+print(temperatures_srt.loc["Pakistan":"Russia"])
+
+# Try to subset rows from Lahore to Moscow
+print(temperatures_srt.loc["Lahore":"Moscow"])
+
+# Subset rows from Pakistan, Lahore to Russia, Moscow
+print(temperatures_srt.loc[("Pakistan", "Lahore"):("Russia", "Moscow")])
+
+# Slicing in both directions
+# Data frames are two-dimensional objects, it is often natural to slice both dimensions at once by passing two agruments to .loc[]
+
+# Subset rows from India, Hyderabad to Iraq, Baghdad
+print(temperatures_srt.loc[("India", "Hyderabad"):("Iraq", "Baghdad")])
+
+# Subset columns from date to avg_temp_c
+print(temperatures_srt.loc[:,"date":"avg_temp_c"])
+
+# Subset in both directions at once
+print(temperatures_srt.loc[("India", "Hyderabad"):("Iraq", "Baghdad"),"date":"avg_temp_c"])
+
+## Slicing Time Series
+'''
+Slicing is particularly useful for time series since it's a common thing to want to filter 
+for data within a date range. Add the date column to the index, then use .loc[] to perform 
+the subsetting. The important thing to remember is to keep your dates in ISO 8601 format, 
+that is, "yyyy-mm-dd" for year-month-day, "yyyy-mm" for year-month, and "yyyy" for year.
+'''
+# Use Boolean conditions to subset temperatures for rows in 2010 and 2011
+temperatures_bool = temperatures[(temperatures["date"] >= "2010-01-01") & (temperatures["date"] <= "2011-12-31")]
+
+print(temperatures_bool)
+
+# Set date as the index and sort the index
+temperatures_ind = temperatures.set_index("date").sort_index()
+
+# Use .loc[] to subset temperatures_ind for rows in 2010 and 2011
+print(temperatures_ind.loc["2010":"2011"])
+
+# Use .loc[] to subset temperatures_ind for rows from Aug 2010 to Feb 2011
+print(temperatures_ind.loc[("2010-08"):("2011-02")])
+
+#Subsetting by row/column number
