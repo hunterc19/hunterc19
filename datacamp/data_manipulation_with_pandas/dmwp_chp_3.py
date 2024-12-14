@@ -226,3 +226,79 @@ print(temperatures_ind.loc["2010":"2011"])
 print(temperatures_ind.loc[("2010-08"):("2011-02")])
 
 #Subsetting by row/column number
+
+# Get 23rd row, 2nd column (index 22, 1)
+print(temperatures.iloc[22,1])
+
+# Use slicing to get the first 5 rows
+print(temperatures.iloc[:5])
+
+# Use slicing to get columns 3 to 4
+print(temperatures.iloc[:,2:4])
+
+# Use slicing in both directions at once
+print(temperatures.iloc[:5,2:4])
+
+'''
+Working with Pivot Tables
+
+columns: breed, color, height_cm, weight_cm
+
+dogs_height_by_breed_vs_color = dogs.pivot_table(
+    "height_cm" #values
+    , index="breed" #rows
+    , columns="color") #columns
+print(dogs_height_by_breed_vs_color)
+# Default aggregation function is mean
+
+.loc[] + slicing is a power combo
+dogs_height_by_breed_vs_color.loc["Chow Chow":"Poodle"]
+
+The axis arguement
+dogs_height_by_breed_vs_color.mean(axis="index")
+This gives you the average across all of the indexes (or colors in this case)
+
+dogs_height_by_breed_vs_color.mean(axis="columns")
+This gives you the averages across columns (or breeds in this case)
+
+'''
+# Add a year column to temperatures
+temperatures["year"] = temperatures["date"].dt.year
+
+# Pivot avg_temp_c by country and city vs year
+temp_by_country_city_vs_year = temperatures.pivot_table("avg_temp_c", index=["country","city"],columns=["year"])
+#This is an example of indexing by multiple fields
+
+# See the result
+print(temp_by_country_city_vs_year)
+
+# Subset for Egypt to India
+temp_by_country_city_vs_year.loc["Egypt":"India"]
+
+# Subset for Egypt, Cairo to India, Delhi
+temp_by_country_city_vs_year.loc[("Egypt","Cairo"):("India","Delhi")]
+
+# Subset for Egypt, Cairo to India, Delhi, and 2005 to 2010
+temp_by_country_city_vs_year.loc[("Egypt","Cairo"):("India","Delhi"), "2005":"2010"]
+# I believe the syntax is you need to subset the index first, then the columns
+
+#Calculating on a pivot table
+#series[series > value]
+
+# Get the worldwide mean temp by year
+mean_temp_by_year = temp_by_country_city_vs_year.mean(axis="index")
+
+# Filter for the year that had the highest mean temp
+print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()])
+
+# Get the mean temp by city
+mean_temp_by_city = temp_by_country_city_vs_year.mean(axis="columns")
+
+# Filter for the city that had the lowest mean temp
+print(mean_temp_by_city[mean_temp_by_city == mean_temp_by_city.min()])
+
+# Filter to the highest mean temp by year
+print(mean_temp_by_year[mean_temp_by_year.idxmax()])
+
+# Filter to the lowest mean temp by city
+print(mean_temp_by_city[mean_temp_by_city.idxmin])
