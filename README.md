@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @hunterc19
 - 👀 I’m interested in stock markets and the internet
-- 🌱 I’m currently learning how to automate using AI and explore the pandas package
+- 🌱 I’m currently learning how to automate using AI
 - 💞️ I’m looking to collaborate on sql and python code orchestration and visualization
 
 <!---
