@@ -1,0 +1,18 @@
+'''
+How to update workspace requirements.txt file
+Step 0: cd to workspace dir
+Step 1 (optional but recommended): python.exe -m pip install --upgrade pip
+Step 2: pip install pipreqs
+Step 3: pipreqs . --ignore ".venv" --force
+Step 4: Review packages and versions
+'''
+# Here are some examples of the lines of code that this will produce in a txt file called requirements.txt in your workspace dir
+numpy==2.2.2
+pandas==2.2.3
+
+#Run the following code to install all required packages for the project after cloning the repository
+```
+pip install -r requirements.txt
+```
+
+#Remember to update your requirements.txt file by running [pipreqs . --ignore ".venv" --force] as you continue developing
